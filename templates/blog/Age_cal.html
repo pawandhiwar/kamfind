@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+ 
+
+{%  block title %} Home {%  endblock title %}
+
+
+
+
+
+
+
+{% block body %}
+
+
+
+
+
+  <div class="container mt-5">
+
+    {% for ad in ads %}
+<div class="ads container">
+   <h3 class="ads-title" >{{ ad.Vartical_ads|safe }}</h3>
+ <div class="ad-container ">
+   {{ ad.Vartical_code|safe }}
+  
+ </div></div>
+{% endfor %}
+
+    <h3 class="text-center" style="margin-top: 5%;">Age Calculator</h3>
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" class="form-control" id="dob">
+        </div>
+        <div class="form-group">
+          <label for="date">Current Date:</label>
+          <input type="date" class="form-control" id="date">
+        </div>
+        <button class="btn  btn-block" onclick="calculateAge()" style="background-color: #867af7; color:#fff; outline: none;">Calculate Age</button>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        <div id="ageResult"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    function calculateAge() {
+      var dob = new Date(document.getElementById("dob").value);
+      var currentDate = new Date(document.getElementById("date").value);
+
+      var years = currentDate.getFullYear() - dob.getFullYear();
+      var months = currentDate.getMonth() - dob.getMonth();
+      var days = currentDate.getDate() - dob.getDate();
+
+      if (months < 0 || (months === 0 && currentDate.getDate() < dob.getDate())) {
+        years--;
+        months = 12 - Math.abs(months);
+      }
+
+      if (days < 0) {
+        months--;
+        days = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate() - dob.getDate() + currentDate.getDate();
+      }
+
+      document.getElementById("ageResult").innerHTML = "You are " + years + " years, " + months + " months, and " + days + " days old.";
+    }
+  </script>
+
+<br><br>
+
+{% for ad in ads %}
+<div class="ads container">
+   <h3 class="ads-title" >{{ ad.Vartical_ads|safe }}</h3>
+ <div class="ad-container ">
+   {{ ad.Vartical_code|safe }}
+  
+ </div></div>
+{% endfor %}
+
+
+
+  
+  
+      {% endblock body %}
+  
