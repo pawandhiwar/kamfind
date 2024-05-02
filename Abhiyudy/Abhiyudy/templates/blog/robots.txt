@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: https://kamfind.com/admin/
-
-Allow: /
-
-Sitemap: https://kamfind.com/sitemap.xml
