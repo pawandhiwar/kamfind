@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+
+{%  block title %} Post Page  {%  endblock title %}
+{% block body %}
+
+
+
+{% load static %}
+
+  <!-- post-details  -->
+  
+  {% for data in meta %}
+
+
+ 
+     <!-- main_div  -->
+
+  
+     <p style="color: #e0e7e9;">  {%  block name %}<a href="/">Home</a> > <a href="/{{ data.slug }}">{{ data.slug }}</a> {%  endblock name %} </a>
+ 
+
+      <!-- Ads ke liye section -->
+        {% for ad in ads %}
+          <div class="ads container">
+           <h3 class="ads-title" >{{ ad.Vartical_ads|safe }}</h3>
+           <div class="ad-container ">
+            {{ ad.Vartical_code|safe }}
+           </div>
+          </div>
+        {% endfor %}
+    
+    <div class="grid-container_ container">
+      <div class="column1" >
+        
+        <div class="container mt-5 job-details-table" >
+       
+          <div class="row mt-4">
+              <div class="col-md-12">
+                  <h3 class="job-detail-heading-desing" style="margin-top: -7%;"> {{ data.title | safe }}</h3>
+                  <br>
+                  
+                      <!-- Ads ke liye section -->
+      
+     
+
+
+  {% if data.Tumnails %}
+    <img class="d-block w-100" src="{{ data.Tumnails.url }}" alt="kamfind.com" style="max-width: 100%; height: auto;">
+{% else %}
+    <img class="d-block w-100" src="" alt="" style="max-width: 100%; height: auto; display: none;" >
+{% endif %}
+
+                  <p><span>{{ data.content1 | safe}} <span>  </p>
+              </div>    
+          </div>
+
+          <hr>
+          <p style="font-size:13px;">Posted by: {{ data.author.username }},<br>
+            Posted date: {{ data.date_post }}</p>
+            
+             
+          </div>
+     </div>
+
+      <div class="column2">
+       <section>
+          {% for ad in ads %}
+          <div class="ads container">
+             <h3 class="ads-title" >{{ ad.Horizantal_ads|safe }}</h3>
+           <div class="ad-container ">
+             {{ ad.Horizantal_ads|safe }}
+            
+           </div></div>
+          {% endfor %}
+
+          <div class="container">
+            <h3 style="text-align: center;  margin-bottom: -9%; margin-top: 7%">
+              Job Posts
+            </h3>
+                   <!-- yahi par rahega kuch problem hai isme  -->
+            <style>
+                  .job-list_blogpage {
+                     display: grid;
+                     grid-template-columns: repeat( 1fr);
+                     gap: 20px;
+                     margin-top: 13%;
+       
+                    }
+    
+            </style>
+          
+            <div class="job-list_blogpage w-100">
+              {% for job in Sub_data %}
+             {% if forloop.counter < 10 %}
+             <a href="/{{ job.slug }}"> <div class="list-contain" >
+                <h3 style="font-size: 18px; font-weight: bold;">
+                  {{ job.title | safe }}
+                </h3><br>
+                <h6><i class="fas fa-map-marker-alt"></i> Location: -  {{job.Location}}</h6>
+                <div class="d-flex justify-content-around">
+                  <div class="tabale-job-list">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th class="responsive-th">Post</th>
+                          <th class="responsive-th">Salary</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>   {{job.number_of_post}}   </td>
+                          <td>   {{job.salary}}   </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-around">
+                  <div>
+                    <h6>Last Date: {{job.application_end_date}}</h6>
+                  </div>
+                  <div>
+                    <h6 style=" background-color: #e0e7e9; padding: 5px; box-shadow: 1px 2px 4px rgb(156, 151, 151);">
+                      {{job.cat}} </h6>
+                  </div>
+                </div>
+              </div></a>
+              {% endif %}
+              {% empty %}
+      
+              No Data Found
+            {% endfor %}
+                <!-- ADD NEW POST  -->
+            </div>
+                    
+            
+
+      
+          </div>
+          </section>
+
+
+      </div>
+    </div>
+
+    {% endfor  %}
+
+     <!-- Ads ke liye section -->
+     {% for ad in ads %}
+     <div class="ads container">
+      <h3 class="ads-title" >{{ ad.Vartical_ads|safe }}</h3>
+      <div class="ad-container ">
+       {{ ad.Vartical_code|safe }}
+      </div>
+     </div>
+    {% endfor %}
+
+
+
+
+    <!-- Recent Posts Section -->
+    <section class="recent-posts">
+      <div class="container">
+        <h3>Recent Posts</h3>
+         <div class="job-list">
+
+          {% for job in recent_data %}{% if forloop.counter < 15 %}
+
+
+          <a href="/{{ job.slug }}"> <div class="list-contain" >
+            <h3 style="font-size: 18px; font-weight: bold;">
+              {{ job.title | safe }}
+            </h3>
+            <h6><i class="fas fa-map-marker-alt"></i> Location: -  {{job.Location}}</h6>
+            <div class="d-flex justify-content-around">
+              <div class="tabale-job-list">
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="responsive-th">Post</th>
+                      <th class="responsive-th">Salary</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>   {{job.number_of_post}}   </td>
+                      <td>   {{job.salary}}    </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="d-flex justify-content-around">
+              <div>
+                <h6>Last Date: {{job.application_end_date}}</h6>
+              </div>
+              <div>
+                <h6 style=" background-color: #e0e7e9; padding: 5px; box-shadow: 1px 2px 4px rgb(156, 151, 151);">
+                  {{job.cat}} </h6>
+              </div>
+            </div>
+          </div></a>
+         
+          {% endif %}
+        {% endfor %}
+ 
+<!-- add new post  -->
+
+      </div>
+      </div>
+    </section>
+
+
+
+ 
+
+  
+
+    <!-- Ads ke liye section -->
+
+  <!-- Paste the Google ad code snippet here -->
+  {% for ad in ads %}
+  <div class="ads container">
+     <h3 class="ads-title" >{{ ad.Vartical_ads|safe }}</h3>
+   <div class="ad-container ">
+     {{ ad.Vartical_code|safe }}
+    
+   </div></div>
+  {% endfor %}
+  <!-- End of Google ad code snippet -->
+  
+
+  
+
+ 
+<!-- Carousel Section  -->
+
+<section class="carousel-arrange ">
+
+  <h3 class="title-caruosel" >Ads </h3>
+
+<div
+  id="carouselExampleIndicators"
+  class="carousel slide carousel-desing container"
+  data-ride="carousel"
+>
+  <ol class="carousel-indicators">
+    <li
+      data-target="#carouselExampleIndicators"
+      data-slide-to="0"
+      class="active"
+    ></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner container carousel-img">
+    <div class="carousel-item active">
+      <img
+        class="d-block w-100"
+        src="{% static 'image/Poster_fix.jpg' %}"
+        alt="First slide"
+      />
+    </div>
+    {% for data in carousel %}
+    <div class="carousel-item">
+      <a href="{{ data.carousel_url}}"><img
+        class="d-block w-100"
+        src="{{ data.poster.url }}"
+        alt="Second slide"
+      /></a>
+    </div> {% endfor %}
+    
+  </div>
+
+  <!-- btn for scroll -->
+
+  <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<span class="sr-only" >Previous</span>
+</a>
+<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span>
+<span class="sr-only">Next</span>
+</a> -->
+</div>
+
+</section>
+
+
+    <!-- social media -->
+
+  
+
+
+
+{% endblock body %}
+

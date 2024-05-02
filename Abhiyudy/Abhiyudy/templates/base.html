@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kamfind | {% block title %} {% endblock title %}</title>
+    <meta
+      name="description"
+      content="Kamfind is your one-stop destination for job listings, government schemes, and student-related information. Find resources, guidance, and updates on employment opportunities, government initiatives, scholarships, and educational programs."
+    />
+    <meta
+      name="keywords"
+      content="job listings, government schemes, student information, employment opportunities, scholarships, educational programs, new job, state-wise job, Chhattisgarh job, CG job cgjob, newcgjob, Latest cg job, sarkari job, sarkari result , job alart, free job alart , cgprep, Sarkari prep, Madhya Pradesh job, MP job, government job, Andhra Pradesh job, AP job, Arunachal Pradesh job, Assam job, Bihar job, Chandigarh job, Chhattisgarh job, Delhi job, Goa job, Gujarat job, Haryana job, Himachal Pradesh job, Jammu and Kashmir job, Jharkhand job, Karnataka job, Kerala job, Madhya Pradesh job, Maharashtra job, Manipur job, Meghalaya job, Mizoram job, Nagaland job, Odisha job, Puducherry job, Punjab job, Rajasthan job, Sikkim job, Tamil Nadu job, Telangana job, Tripura job, Uttar Pradesh job, Uttarakhand job, West Bengal job, government job openings, job opportunities, job search"
+    />
+    <meta name="author" content="pawan kumar " />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English, Hindi" />
+    <meta name="schema" content="Job, Government, Student" />
+    <meta name="schema:jobType" content="Full-time, Part-time, Contract" />
+    <meta name="schema:governmentType" content="Federal, State, Local" />
+    <meta name="schema:studentType" content="Undergraduate, Graduate" />
+    <meta name="rating" content="general" />
+    <meta name="distribution" content="global" />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+    <link rel="canonical" href="https://kamfind.com/" />
+    <!-- Canonical URL for avoiding duplicate content issues -->
+    <meta property="og:type" content="website" />
+
+    <link rel="shorcut icon" href="{% static 'image/kamfind logo optional.png' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-oNxBrx3DHlWlOZt6Yk5VSBWHvo1Bz7FUuiOhxhjdCaGBd17z+ST1G8AFypVehfBP" crossorigin="anonymous">
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- AOS CSS for animations -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet"
+    />
+
+    <!-- css file  -->
+
+    <link rel="stylesheet" href=" {% static 'CSS file\Style.css' %}" />
+
+    <!-- font -->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courgette&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,100..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Preloader -->
+
+    <div class="preloader">
+      <img src="/asset/image/loding.gif" alt="Loading..." />
+      <!-- Replace 'loading.gif' with your preloader image -->
+    </div>
+
+    <!-- header   -->
+
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <div id="logo">
+            <a class="navbar-brand mr-auto" href="/">
+              <img
+                src=" {% static 'image/kamfind logo.png' %}"
+                alt="Logo"
+                height="60"
+              />
+             
+            </a>
+          </div>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/" style="color: #000000"> <i class="fas fa-home" style="margin-right:5px;  font-size:20px; color: #010ebb;" ></i> Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  style="color: #000000"
+                  id="navbarDropdownJob"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                <i class="fas fa-briefcase" style="font-size:20px; color: #010ebb; margin-right:10px; " ></i>  Job
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownJob">
+                  {% for cate in categories  %} 
+
+                  <a
+                    href="/?categories={{cate.cat_id | safe }}"
+                    class="dropdown-item"
+                    > <i class="fas fa-briefcase" style="font-size:20px; color: #010ebb; margin-right:10px; " ></i>{{cate.title}}</a
+                  >
+
+                 {% endfor %}
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/Sarkari" style="color: #000000"
+                  > <i class="fas fa-landmark" style="font-size:20px; margin-right:5px; color: #010ebb;" ></i>  Sarkari Yojna</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/Spost" style="color: #000000"
+                  ><i class="fas fa-file-alt" style="font-size:20px; color: #010ebb; margin-right:5px; " ></i> Latest Post</a
+                >
+              </li>
+
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  style="color: #000000"
+                  href="#"
+                  id="navbarDropdownResult"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  More
+                </a>
+                <div
+                  class="dropdown-menu"
+                  style="text-align: justify; max-width: 300px; margin-left: -25px"; 
+                  aria-labelledby="navbarDropdownResult"
+                >
+                </i>  <a class="dropdown-item" href="/result/"><i class="fas fas fa-poll" style="font-size:20px; color: #010ebb; margin-right:10px; " ></i>Result</a><hr>
+                  <a class="dropdown-item" href="/old_pepar/"
+                    ><i class="fas fa-clipboard" style="font-size:20px; color: #010ebb; margin-right:10px; " ></i>Previous Year <br> Questions Papers</a
+                  ><hr>
+                  <a class="dropdown-item" href="/a"><i class="fas fa-id-card" style="font-size:20px; color: #010ebb; margin-right:10px; " ></i>Admit Card</a><hr>
+                  <a class="dropdown-item" href="/syllabus/"><i class="fas fa-file-alt" style="font-size:20px; color: #010ebb; margin-right:10px; " ></i>Syllabus</a><hr>
+                  <a class="dropdown-item" href="/anskey/"><i class="fas fa-book" style="font-size:20px; color: #010ebb; margin-right:10px; " ></i>Answer Key</a><hr>
+                  <a class="dropdown-item" href="/tools/"><i class="fas fa-tools" style="font-size:20px; color: #010ebb; margin-right:10px; " ></i>Tools</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    {% block body %}
+
+    <a>Abhuday | {% block name %} {% endblock name %}</a>
+
+    {% endblock body %}
+
+    <!-- whatsapp and telegram popup -->
+    {% for x in social %}
+
+    <div class="popup">
+      <a href="{{x.Whatsapp}}"
+        ><img
+          src="{% static 'image/whatsapp-logo.png' %}"
+          style="width: 50px"
+          alt="kamfind.com"
+          class="logo-join"
+      /></a>
+      <a href="{{x.Telegram}}"
+        ><img
+          src="{% static 'image/Telegram-logo.png' %}"
+          style="width: 39px; margin-left: 10%"
+          alt="kamfind.com"
+          class="logo-join"
+      /></a>
+    </div>
+
+    {% endfor %}
+    <!-- social media -->
+
+    <section class="social-group">
+      <h3>Social Plugings</h3>
+      <hr />
+      {% for data in social %}
+      <div class="social-buttons container">
+        <a href="{{data.Facebook}}" target="_blank" class="facebook"
+          ><i class="ri-facebook-fill social-icon"></i> Facebook</a
+        >
+        <a href="{{data.Whatsapp}}" target="_blank" class="whatsapp"
+          ><i class="ri-whatsapp-fill social-icon"></i> WhatsApp</a
+        >
+        <a href="{{data.Telegram}}" target="_blank" class="telegram"
+          ><i class="ri-telegram-fill social-icon"></i> Telegramt</a
+        >
+        <a href="{{data.Instagram}}" target="_blank" class="instagram"
+          ><i class="ri-instagram-fill social-icon"></i> Instagram</a
+        >
+        <a href="{{data.Youtube}}" target="_blank" class="youtube"
+          ><i class="ri-youtube-fill social-icon"></i> YouTube</a
+        >
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+      <div class="about-us">
+        <a href="/"> <img
+          src=" {% static 'image/kamfind logo optional.png' %}"
+          alt="Logo"
+       
+        /></a>
+        <p>
+          <b>Kamfind.com </b><br />
+          is a comprehensive platform offering fast job news,
+           government schemes, and student-related notifications.<br />
+          <i> खबरों की सहायता Kamfind </i>
+        </p>
+      </div>
+
+      <nav class="footer-nav">
+       
+        <a href="/about">About</a>
+        <a href="/contact/">Contact us</a>
+        <a href="/privacy/">Privacy Policy</a>
+      </nav>
+      <div class="copyright">
+        Site - Kamfind | © 2024
+        <a href="/disclaimer/">Disclaimer</a> |
+        <a href="/sitemap/">Sitemap</a> |
+      </div>
+    </footer>
+
+    <!-- End of Footer -->
+
+    <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- notficationn popup -->
+
+    <script>
+      function requestNotificationPermission() {
+        if (!("Notification" in window)) {
+          console.log("This browser does not support notifications.");
+          return;
+        }
+
+        Notification.requestPermission().then(function (permission) {
+          if (permission === "granted") {
+            console.log("Notification permission granted.");
+            subscribeUserToPush();
+          } else {
+            console.log("Unable to get permission to notify.");
+          }
+        });
+      }
+
+      function subscribeUserToPush() {
+        if (!("serviceWorker" in navigator)) {
+          console.log("Service workers are not supported.");
+          return;
+        }
+
+        navigator.serviceWorker.ready.then(function (registration) {
+          registration.pushManager
+            .subscribe({
+              userVisibleOnly: true,
+              applicationServerKey: "YourPublicKey",
+            })
+            .then(function (subscription) {
+              console.log("User is subscribed:", subscription);
+              // Send the subscription to your server
+            })
+            .catch(function (error) {
+              console.error("Failed to subscribe the user: ", error);
+            });
+        });
+      }
+
+      setTimeout(requestNotificationPermission, 5000);
+
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("sw.js")
+          .then(function (registration) {
+            console.log(
+              "Service Worker registered successfully:",
+              registration
+            );
+          })
+          .catch(function (error) {
+            console.error("Service Worker registration failed:", error);
+          });
+      } else {
+        console.log("Service workers are not supported.");
+      }
+    </script>
+
+    <!-- preloader -->
+
+    <script>
+      // Simulate a delay (you can replace this with your actual loading time)
+      setTimeout(function () {
+        document.querySelector(".preloader").style.display = "none"; // Hide the preloader
+      }, 2000); // 3000 milliseconds = 3 seconds
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 1000, // Duration of the animations in milliseconds
+        delay: 100, // Delay for each animation in milliseconds
+      });
+    </script>
+  </body>
+</html>

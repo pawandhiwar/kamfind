@@ -1,0 +1,169 @@
+
+
+{% extends "base.html" %}
+ 
+
+{%  block title %} Previous Year Questions-Paper Download {%  endblock title %}
+
+
+
+
+
+
+
+{% block body %}
+
+<p style="color: #e0e7e9;">  {%  block name %}<a href="/">Home</a> > <a href="/old_pepar/">Previous Year Questions-Paper Download</a> {%  endblock name %} </a>
+
+          <!-- search    -->
+   
+  <form method="GET">
+    <div class="search container" style="margin-bottom: 3%;">
+      <div class="search-bar">
+       
+        <input type="text" placeholder="Previous Year Questions-Paper" name="searchbar" value="" />
+        <button type="submit" style="background-color: transparent; border: none;"><i class="fa fa-search"  aria-hidden="true"></i></button>
+        <!-- <i class="fas fa-filter" id="book" onclick="toggleFilter()"></i> -->
+   
+      </div>
+    </div>   </form>
+ 
+    {% for ad in ads %}
+    <div class="ads container">
+       <h3 class="ads-title" >{{ ad.Vartical_ads|safe }}</h3>
+     <div class="ad-container ">
+       {{ ad.Vartical_code|safe }}
+      
+     </div></div>
+    {% endfor %}
+
+<style>
+   
+   
+    .table th, .table td {
+        vertical-align: right;
+       ;
+    }
+    .table-bordered {
+        border-color: #867af7;; /* Blue border color */
+    }
+    .table th {
+        
+        background-color: #867af7; /* Blue background color for table headings */
+        color: #fff; /* White text color for table headings */
+    }
+
+  
+    .notification {
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    .notification:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .notification-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+    .notification-warning {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+    .notification-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+    .notification a {
+        color: inherit;
+        text-decoration: underline;
+    }
+    .notification a:hover {
+        color: #155724;
+    }
+</style>
+
+<div class="container">
+    <h3 class="text-center mb-4" style="margin-top: 4%;">Previous Year Questions-Paper Download</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    
+                    <th>Exam/Board </th>
+                    <th>Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in Old_pepar %}
+                <tr data-aos="fade-up" data-aos-delay="100">
+                  
+                    <td>
+                        <div class="notification notification-success">
+                            {{ data.previous_year_q_detail }}
+                        </div>
+                    </td>
+                    <td style="max-width:130px;">
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="mySelect" style="outline: none;  ">
+                                <option value="" selected>Select Year</option>
+                                <option data-link="{{ data.file1.url }}">{{ data.year1 }}</option>
+                                <option data-link="{{ data.file2.url }}">{{ data.year2 }}</option>
+                                <option data-link="{{ data.file3.url }}">{{ data.year3 }}</option>
+                                <option data-link="{{ data.file4.url }}">{{ data.year4 }}</option>
+                                <option data-link="{{ data.file5.url }}">{{ data.year5 }}</option>
+                            </select>
+                            <button id="myButton" class="btn btn-primary mt-1 ml-1" style="background-color: #867af7;outline: none; border: none;">Download</button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+  
+
+{% for ad in ads %}
+<div class="ads container">
+   <h3 class="ads-title" >{{ ad.Vartical_ads|safe }}</h3>
+ <div class="ad-container ">
+   {{ ad.Vartical_code|safe }}
+  
+ </div></div>
+{% endfor %}
+    
+
+
+      <!-- year dropdown click  -->
+
+      <script>
+        // Get the button and select elements
+        const button = document.getElementById('myButton');
+        const select = document.getElementById('mySelect');
+
+        // Add a click event listener to the button
+        button.addEventListener('click', function() {
+            // Get the selected option element
+            const selectedOption = select.options[select.selectedIndex];
+            
+            // Get the data-link attribute from the selected option
+            const selectedLink = selectedOption.getAttribute('data-link');
+            
+            // Open the link in a new tab if it's a valid URL
+            if (selectedLink) {
+                window.open(selectedLink, '_blank');
+            } else {
+                alert('No link associated with the selected option.');
+            }
+        });
+    </script>
+
+      {% endblock body %}
+  

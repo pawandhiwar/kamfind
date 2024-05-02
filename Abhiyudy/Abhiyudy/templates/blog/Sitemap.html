@@ -1,0 +1,125 @@
+
+
+{% extends "base.html" %}
+ 
+
+{%  block title %} Sitemap {%  endblock title %}
+
+
+{% block body %}
+
+{%  block name %}<p style="color: rgb(205, 214, 221);"><a href="/">Home</a> > <a href="/sitemap">sitemap</a></p>{%  endblock name %} 
+ 
+
+
+<style>
+   
+   
+    .table th, .table td {
+        vertical-align: middle;
+    }
+    .table-bordered {
+        border-color: #867af7;; /* Blue border color */
+    }
+    .table th {
+        
+        background-color: #867af7; /* Blue background color for table headings */
+        color: #fff; /* White text color for table headings */
+    }
+    .notification {
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    .notification:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .notification-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+    .notification-warning {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+    .notification-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+    .notification a {
+        color: inherit;
+        text-decoration: underline;
+    }
+    .notification a:hover {
+        color: #155724;
+    }
+</style>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h3 class="mb-4">Sitemap</h3>
+                
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/about">About Us</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/tools">Tools</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/contact">Contact Us</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/privacy">Privacy Policy</a>
+                    </li> 
+                    <li class="list-group-item">
+                        <a href="/disclaimer/">disclaimer</a>
+                    </li> 
+                    <li class="list-group-item">
+                        <a href="/disclaimer">Disclaimer</a> 
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/Sarkari" 
+                          >Sarkari Yojna</a
+                        >
+                      </li>
+                  <i class="list-group-item"><a  href="/Spost/">Latest Post </a></i>  
+                  <i class="list-group-item"><a  href="/result/">Result</a></i>  
+                  <i class="list-group-item"><a  href="/old_pepar/">Previous Year Questions Papers</a></i>  
+                  <i class="list-group-item"><a  href="/a">Admit Card</a></i>  
+                  <i class="list-group-item"><a  href="/syllabus/">Syllabus</a></i>  
+                  <i class="list-group-item"><a  href="/anskey/">Answer Key</a></i>  
+                  <i class="list-group-item"><a  href="/Ssc/">SSC</a></i>  
+                  <i class="list-group-item"><a  href="/vyapam/">Vyapam</a></i>  
+                  <i class="list-group-item"><a  href="/railway/">Railway</a></i>  
+                  <i class="list-group-item"><a  href="/upsc/">Upsc</a></i> 
+                  
+                  <i class="list-group-item"><a  href="/all-post/">All-post</a></i>
+                 
+                  
+                 
+                    <!-- Add more links to other pages as necessary -->
+                </ul>
+                
+                <p class="mt-4">Thank you for visiting Kamfind.com We hope this sitemap helps you navigate our website effectively.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    
+  
+      {% endblock body %}
+  

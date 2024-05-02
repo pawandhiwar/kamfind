@@ -1,0 +1,97 @@
+
+
+{% extends "base.html" %}
+ 
+
+{%  block title %} About {%  endblock title %}
+
+
+
+
+{% block body %}{% load static %}
+
+{%  block name %}<p style="color: rgb(205, 214, 221);"><a href="/">Home</a> > <a href="/about">About</a></p>{%  endblock name %} 
+ 
+
+
+<style>
+   
+   
+    .table th, .table td {
+        vertical-align: middle;
+    }
+    .table-bordered {
+        border-color: #867af7;; /* Blue border color */
+    }
+    .table th {
+        
+        background-color: #867af7; /* Blue background color for table headings */
+        color: #fff; /* White text color for table headings */
+    }
+    .notification {
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    .notification:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .notification-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+    .notification-warning {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+    .notification-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+    .notification a {
+        color: inherit;
+        text-decoration: underline;
+    }
+    .notification a:hover {
+        color: #155724;
+    }
+</style>
+
+
+
+
+
+<!-- About Section -->
+<section id="about" class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>About Kamfind</h2>
+        <p>Kamfind is your one-stop destination for job notifications, government schemes notifications, and other student-related information. We strive to provide up-to-date and relevant information to help you stay informed and make better decisions.</p>
+        <p>Our platform is designed to make it easy for you to access the latest job openings, government initiatives, and educational resources, all in one place. Whether you're a job seeker, a student, or someone interested in government programs, Kamfind has something for you.</p>
+      </div>
+      <div class="col-lg-6">
+        <!-- Image Placeholder (Replace with actual image) -->
+        <img src="{% static 'image/kamfind logo.png' %}" alt="About Kamfind" class="img-fluid logo">
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    
+
+
+    
+
+
+  
+    
+  
+      {% endblock body %}
+  

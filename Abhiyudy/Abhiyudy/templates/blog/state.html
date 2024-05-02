@@ -1,0 +1,277 @@
+{% extends "base.html" %}
+ 
+{%  block title %} categories {%  endblock title %}
+
+{% block body %}
+
+ <p > {%  block name %}<a href="/">Home</a> > <a href="{{ state.state_id }}">State</a> {%  endblock name %} </a>
+ 
+
+{% load static %}
+
+ 
+  <!-- search    -->
+   
+  <form method="GET">
+    <div class="search container">
+      <div class="search-bar">
+       
+        <input type="text" placeholder="Search" name="searchbar" value="" />
+        <button type="submit" style="background-color: transparent; border: none;"><i class="fa fa-search"  aria-hidden="true"></i></button>
+        <!-- <i class="fas fa-filter" id="book" onclick="toggleFilter()"></i> -->
+   
+      </div>
+    </div>   </form>
+    
+    
+    <!-- filter field -->
+
+    
+    <style>
+      .filter-box {
+        border: 1px solid #ced4da;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+        
+      }
+    
+      /* Update button color */
+      .btn-primary {
+        background-color: #0e2f99;
+        border-color:  #0e2f99;
+      }
+    
+      /* Remove hover effect on options */
+      .form-control option:hover {
+        background-color: transparent;
+      }
+    
+      /* Add outline to options */
+      .form-control option {
+        outline: none;
+      }
+    
+      #opton-selection:hover{
+        background-color: #c5c5c7;
+      }
+    </style>
+    
+  <form action="GET" >  
+  <div class="Pop-book" id="filterSection" style="display: none;">
+    <form class="book-btn" id="book-btn">
+      <div class="container mt-5">
+        <div class="filter-box">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group" id="form_control">
+                <label for="state">Location:</label>
+                <select class="form-control" id="state" name="Location">
+                  <option id="opton-selection"  value="" >Select State</option>
+                  <option id="opton-selection" value="छत्तीसगढ़">छत्तीसगढ़</option>
+                  <option id="opton-selection" value="raipur">Raipur</option>
+                  <option id="opton-selection" value="state2">State 2</option>
+                  <!-- Add more states as needed -->
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="jobType">Job Type:</label>
+                
+                <select class="form-control" id="jobType" name="job_type">
+                  <option id="opton-selection"  value="" >Select Job</option>
+                  <option id="opton-selection" value="शासकीय">शासकीय</option>
+                
+  
+                
+                  <!-- Add more job types as needed --> 
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="course">Ability:</label>
+                <select class="form-control" id="course" name="Ability">
+                  <option id="opton-selection"  value="">Select Ability</option>
+                  <option id="opton-selection"  value="12th">12th</option>
+                  <option id="opton-selection" value="course2">10th</option>
+                  <!-- Add more courses as needed -->
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <button class="btn btn-primary " style="background-color: #0e2f99; border: none;" type="submit">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div></form>
+  
+  <script>
+    function toggleFilter() {
+      var filterSection = document.getElementById("filterSection");
+      if (filterSection.style.display === "none") {
+        filterSection.style.display = "block";
+      } else {
+        filterSection.style.display = "none";
+      }
+    }
+  </script>
+
+
+
+<!-- state filter -->
+
+<style>
+  
+  .state-section  {
+  
+  display: flex;
+  justify-content: center;
+  margin-top:1%;
+
+
+  }
+  
+  #stateSelect {
+    text-align: center;
+    border: none;
+    outline: none;
+    padding:0.5%;
+    box-shadow: 0 0 4px rgb(156, 154, 154);
+    width: 100%; /* Make the select element fill its container */
+    max-width:500px; /* Limit the maximum width of the select element */
+    margin-top: -5px;; /* Add some bottom margin for spacing */
+  }
+
+  
+/* Responsive styles */
+@media screen and (max-width: 600px){
+  #stateSelect {
+   
+    max-width:300px; 
+    margin-top: 0px;
+  }}
+</style>
+
+
+<div class="state-section container">
+  <select id="stateSelect" class="form-select" aria-label="Select State">
+    {% for state in data %}
+      <option value="{{ state.state_id }}">{{ state.state }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<script>
+  document.getElementById("stateSelect").addEventListener("change", function() {
+    var selectedStateId = this.value;
+    window.location.href = "/?state=" + selectedStateId;
+  });
+</script>
+
+{% for ad in ads %}
+<div class="ads container">
+   <h3 class="ads-title" >{{ ad.Vartical_ads|safe }}</h3>
+ <div class="ad-container ">
+   {{ ad.Vartical_code|safe }}
+  
+ </div></div>
+{% endfor %}
+<!-- End of Google ad code snippet -->
+
+
+<section>
+
+  
+
+  
+  <div class="container">
+    {% for job in state_filter %}
+    {% if forloop.first %}
+        <h3 style="text-align: center; margin-bottom: -9%; margin-top: 7%">
+            {{ job.state.name | safe }}
+        </h3>
+    {% endif %}
+{% endfor %}
+
+    
+  
+    <div class="job-list w-100" data-aos="fade-up" data-aos-delay="100">
+      {% for job in state_filter %}
+     
+     <a href="/{{ job.slug }}"> <div class="list-contain" >
+        <h3 style="font-size: 18px; font-weight: bold;">
+          {{ job.title | safe }}
+        </h3><br>
+        <h6><i class="fas fa-map-marker-alt"></i> Location: -  {{job.Location}}</h6>
+        <div class="d-flex justify-content-around">
+          <div class="tabale-job-list">
+            <table>
+              <thead>
+                <tr>
+                  <th class="responsive-th">Post</th>
+                  <th class="responsive-th">Salary</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>   {{job.number_of_post}}   </td>
+                  <td>   {{job.salary}}   </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="d-flex justify-content-around">
+          <div>
+            <h6>Last Date: <br>
+              {{job.application_end_date}}</h6>
+          </div>
+          <div>
+            <h6 style=" background-color: #e0e7e9; padding: 5px; box-shadow: 1px 2px 4px rgb(156, 151, 151);">
+              {{job.cat}} </h6>
+          </div>
+        </div>
+      </div></a>
+      
+      {% empty %}
+
+      No Data Found
+    {% endfor %}
+        <!-- ADD NEW POST  -->
+    </div>
+            
+ 
+<div class="container">
+<div class="row justify-content-center mt-3">
+  <div class="col-md-6">
+   
+  </div>
+</div>
+</div>
+
+
+  </div>
+  </section>
+
+
+  {% for ad in ads %}
+  <div class="ads container" style="margin-bottom: 10px;">
+     <h3 class="ads-title" >{{ ad.Vartical_ads|safe }}</h3>
+   <div class="ad-container ">
+     {{ ad.Vartical_code|safe }}
+    
+   </div></div>
+  {% endfor %}
+  <!-- End of Google ad code snippet -->
+  
+    
+  
+
+{% endblock body %}
